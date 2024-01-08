@@ -229,12 +229,96 @@ def page2():
     st.plotly_chart(fig_imports, use_container_width=True)
 
     
+def page3():
+    st.title("KPI")
+
+    # CSS to inject contained in a string
+    kpi_style = """
+    <style>
+    .kpi_box {
+        border: 2px solid #8ab4f8;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 10px 0px;
+        background-color: #1e1f1e;
+    }
+    .kpi_box h4 {
+        margin: 0 0 5px 0;
+        font-weight: 500;
+        font-size: 1.25em;
+        color: #1a73e8;
+    }
+    .kpi_box p {
+        margin: 4px 0;
+        font-size: 1.1em;
+    }
+    .kpi_box b {
+        font-weight: 700;
+    }
+    </style>
+    """
+
+    # Inject CSS with Markdown
+    st.markdown(kpi_style, unsafe_allow_html=True)
+
+    # Define the ratio of households per GWh
+    kpi1_ratio = 220  # Number of households per GWh
+
+    # Production values for 2022 in GWh
+    production_nucleaire_2022 = 23000
+    production_hydraulique_2022 = 4204
+    production_eolien_2022 = 3170  # Assuming the value is in GWh (3170000 MWh)
+    production_photovoltaique_2022 = 1600  # Assuming the value is in GWh (1600000 MWh)
+    production_thermique_2022 = 5300
+
+    # Calculate the number of households for each production type
+    households_nucleaire_2022 = production_nucleaire_2022 * kpi1_ratio
+    households_hydraulique_2022 = production_hydraulique_2022 * kpi1_ratio
+    households_eolien_2022 = production_eolien_2022 * kpi1_ratio
+    households_photovoltaique_2022 = production_photovoltaique_2022 * kpi1_ratio
+    households_thermique_2022 = production_thermique_2022 * kpi1_ratio
+
+
+    # Display KPIs using Markdown and custom styles
+    st.markdown(f"""
+    <div class="kpi_box">
+        <h4>Consommation par foyer</h4>
+        <p>1 GWh équivaut à l'énergie consommée par <b>{kpi1_ratio} foyers</b></p>
+    </div>
+    <div class="kpi_box">
+        <h4>Production nucléaire en 2022</h4>
+        <p>{production_nucleaire_2022} GWh</p>
+        <p><b>{households_nucleaire_2022:,} foyers alimentés</b></p>
+    </div>
+    <div class="kpi_box">
+        <h4>Production hydraulique en 2022</h4>
+        <p>{production_hydraulique_2022} GWh</p>
+        <p><b>{households_hydraulique_2022:,} foyers alimentés</b></p>
+    </div>
+    <div class="kpi_box">
+        <h4>Production éolienne en 2022</h4>
+        <p>{production_eolien_2022} GWh</p>
+        <p><b>{households_eolien_2022:,} foyers alimentés</b></p>
+    </div>
+    <div class="kpi_box">
+        <h4>Production photovoltaïque en 2022</h4>
+        <p>{production_photovoltaique_2022} GWh</p>
+        <p><b>{households_photovoltaique_2022:,} foyers alimentés</b></p>
+    </div>
+        <div class="kpi_box">
+        <h4>Production thermique en 2022</h4>
+        <p>{production_thermique_2022} GWh</p>
+        <p><b>{households_thermique_2022:,} foyers alimentés</b></p>
+    </div>
+    """, unsafe_allow_html=True)
+
+
 
 # Menu latéral pour la navigation
 st.sidebar.title("Navigation")
 page = st.sidebar.radio(
     "Choisir une page:", 
-    ["La production", "Les exports"], 
+    ["La production", "Les exports", "KPI"],  # Add "KPI" to the list of pages
     key='page_navigation'
 )
 
@@ -243,4 +327,7 @@ if page == "La production":
     page1()
 elif page == "Les exports":
     page2()
+elif page == "KPI":  # This line is new, and it checks if the KPI page is selected
+    page3()  # Call the KPI page function if the KPI page is selected
+
 
