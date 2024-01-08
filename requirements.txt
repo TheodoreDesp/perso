@@ -1,3 +1,7 @@
 plotly
 streamlit
 pandas
+
+git add requirements.txt
+git commit -m "Add requirements.txt with plotly"
+git push
