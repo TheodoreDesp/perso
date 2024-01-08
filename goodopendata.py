@@ -10,7 +10,7 @@ st.title("L'énergie en France 🔵⚪️🔴")
 # Chargement des données
 @st.cache_data
 def load_data():
-    data = pd.read_excel("https://github.com/TheodoreDesp/perso/blob/18f37b0f965264d31ec3bd6f676b714b608dc9d9/imports-exports-commerciaux.csv")
+    data = pd.read_excel("dataset_electricite_france.xlsx")
     data = data.iloc[1:]  # Ignorer les en-têtes personnalisés
 
     # Convertir 'Période' en datetime, ajuster le format si nécessaire
