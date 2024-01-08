@@ -158,7 +158,7 @@ def page2():
     # Charger les données d'exports
     @st.cache_data
     def load_export_data():
-        export_data = pd.read_csv("C:\\Users\\tdespaux\\Desktop\\imports-exports-commerciaux.csv", delimiter=';')
+        export_data = pd.read_csv("imports-exports-commerciaux.csv", delimiter=';')
         
         # Convertir la colonne 'date' en datetime
         export_data['date'] = pd.to_datetime(export_data['date'], format='%d/%m/%Y', errors='coerce')
