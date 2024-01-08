@@ -232,7 +232,7 @@ def page2():
 st.sidebar.title("Navigation")
 page = st.sidebar.radio(
     "Choisir une page:", 
-    ["La production", "Les exports", "KPI"],  # Add "KPI" to the list of pages
+    ["La production", "Les exports"], 
     key='page_navigation'
 )
 
