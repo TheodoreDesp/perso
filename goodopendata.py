@@ -232,14 +232,14 @@ def page2():
 st.sidebar.title("Navigation")
 page = st.sidebar.radio(
     "Choisir une page:", 
-    ["La production", "Les exports"], 
+    ["La production", "Les imports-exports"], 
     key='page_navigation'
 )
 
 # Appel des fonctions en fonction de la sélection
 if page == "La production":
     page1()
-elif page == "Les exports":
+elif page == "Les imports-exports":
     page2()
 
 
